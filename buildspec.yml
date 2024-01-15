@@ -1,0 +1,27 @@
+version: 0.2
+
+phases:
+    pre_build:
+      commands:
+        - export USERNAME=${USERNAME}
+        - export PASSWORD=${PASSWORD}
+        - export EMAIL=${EMAIL}
+        - export EMAIL_PASSWORD=${EMAIL_PASSWORD}
+    build:
+      commands:
+        - mvn clean package
+    post_build:
+      commands:
+        - echo Success
+env:
+  variables:
+    USERNAME: ${USERNAME}
+    PASSWORD: ${PASSWORD}
+    EMAIL: ${EMAIL}
+    EMAIL_PASSWORD: ${EMAIL_PASSWORD}
+
+artifacts:
+    files:
+      - target/email-service.jar
+    discard-paths: yes
+
